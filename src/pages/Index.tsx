@@ -3,15 +3,26 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Mail, Phone, Download, ExternalLink, Github, Linkedin, Instagram, MapPin, Calendar, Award, Users, Code, Palette, ChevronDown, ChevronUp } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Mail, Phone, Download, ExternalLink, Github, Linkedin, Instagram, MapPin, Calendar, Award, Users, Code, Palette, ChevronDown, ChevronUp, Copy, MessageCircle } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
   const [expandedExperience, setExpandedExperience] = useState<string | null>(null);
+  const { toast } = useToast();
+
+  const copyToClipboard = (text: string, label: string) => {
+    navigator.clipboard.writeText(text);
+    toast({
+      title: "Copied!",
+      description: `${label} copied to clipboard`,
+    });
+  };
 
   const experiences = [
     {
       id: "pkl",
-      year: "2024",
+      year: "2025",
       title: "Praktik Kerja Lapangan (PKL)",
       company: "SMK Telkom Malang",
       location: "Malang, Indonesia",
@@ -20,7 +31,7 @@ const Index = () => {
     },
     {
       id: "competition",
-      year: "2023",
+      year: "2025",
       title: "Business Competition Semifinalist",
       company: "School Level Competition",
       location: "Malang, Indonesia", 
@@ -29,7 +40,7 @@ const Index = () => {
     },
     {
       id: "committee",
-      year: "2023",
+      year: "2024",
       title: "Event Committee Member",
       company: "SMK Telkom Malang",
       location: "Malang, Indonesia",
@@ -50,26 +61,13 @@ const Index = () => {
       description: "Early concept for a web/app to search, rate, and review coffee shops with a fun spin wheel feature",
       tech: ["UI/UX Design", "Concept"],
       type: "App Design"
-    },
-    {
-      title: "Group Database Project",
-      description: "Developed a simple app connected to a MySQL database",
-      tech: ["MySQL", "Database Design"],
-      type: "Database"
-    },
-    {
-      title: "Graphic Design Works",
-      description: "Posters and templates made with Canva for various events and purposes",
-      tech: ["Canva", "Graphic Design"],
-      type: "Design"
     }
   ];
 
   const stats = [
-    { number: "3+", label: "Years in Tech", icon: Code },
-    { number: "10+", label: "Projects Done", icon: ExternalLink },
-    { number: "2+", label: "Competitions", icon: Award },
-    { number: "50+", label: "Design Works", icon: Palette }
+    { number: "2", label: "Years in Tech", icon: Code },
+    { number: "1", label: "Project Done", icon: ExternalLink },
+    { number: "2+", label: "Competitions", icon: Award }
   ];
 
   const skills = [
@@ -103,14 +101,53 @@ const Index = () => {
             </div>
 
             <div className="flex items-center space-x-2">
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" onClick={() => window.open('http://github.com/farrelshaq', '_blank')}>
                 <Github className="w-4 h-4 mr-2" />
                 GitHub
               </Button>
-              <Button size="sm">
-                <Mail className="w-4 h-4 mr-2" />
-                Contact
-              </Button>
+              
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button size="sm">
+                    <Mail className="w-4 h-4 mr-2" />
+                    Contact
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-md">
+                  <DialogHeader>
+                    <DialogTitle className="flex items-center gap-2">
+                      <Mail className="w-5 h-5 text-primary" />
+                      Contact Information
+                    </DialogTitle>
+                  </DialogHeader>
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between p-4 border rounded-lg">
+                      <div className="flex items-center gap-3">
+                        <Phone className="w-5 h-5 text-primary" />
+                        <div>
+                          <p className="font-medium">Phone</p>
+                          <p className="text-sm text-muted-foreground">08113889997</p>
+                        </div>
+                      </div>
+                      <Button variant="outline" size="sm" onClick={() => copyToClipboard('08113889997', 'Phone number')}>
+                        <Copy className="w-4 h-4" />
+                      </Button>
+                    </div>
+                    <div className="flex items-center justify-between p-4 border rounded-lg">
+                      <div className="flex items-center gap-3">
+                        <Mail className="w-5 h-5 text-primary" />
+                        <div>
+                          <p className="font-medium">Email</p>
+                          <p className="text-sm text-muted-foreground">shaqfarrel@gmail.com</p>
+                        </div>
+                      </div>
+                      <Button variant="outline" size="sm" onClick={() => copyToClipboard('shaqfarrel@gmail.com', 'Email')}>
+                        <Copy className="w-4 h-4" />
+                      </Button>
+                    </div>
+                  </div>
+                </DialogContent>
+              </Dialog>
             </div>
           </div>
         </div>
@@ -144,11 +181,71 @@ const Index = () => {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Button size="lg" className="bg-primary hover:bg-primary/90">
-                  <Mail className="w-5 h-5 mr-2" />
-                  Let's Talk
-                </Button>
-                <Button variant="outline" size="lg">
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button size="lg" className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 shadow-lg">
+                      <MessageCircle className="w-5 h-5 mr-2" />
+                      Let's Talk
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-md">
+                    <DialogHeader>
+                      <DialogTitle className="flex items-center gap-2 text-center justify-center">
+                        <MessageCircle className="w-6 h-6 text-primary" />
+                        Let's Connect!
+                      </DialogTitle>
+                    </DialogHeader>
+                    <div className="space-y-6">
+                      <div className="text-center">
+                        <p className="text-muted-foreground">I'm excited to hear from you! Choose your preferred way to connect:</p>
+                      </div>
+                      
+                      <div className="space-y-4">
+                        <div className="flex items-center justify-between p-4 border rounded-lg bg-gradient-to-r from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
+                          <div className="flex items-center gap-3">
+                            <Phone className="w-5 h-5 text-green-600" />
+                            <div>
+                              <p className="font-medium">WhatsApp</p>
+                              <p className="text-sm text-muted-foreground">08113889997</p>
+                            </div>
+                          </div>
+                          <div className="flex gap-2">
+                            <Button variant="outline" size="sm" onClick={() => copyToClipboard('08113889997', 'Phone number')}>
+                              <Copy className="w-4 h-4" />
+                            </Button>
+                            <Button size="sm" onClick={() => window.open('https://wa.me/08113889997', '_blank')} className="bg-green-600 hover:bg-green-700">
+                              <MessageCircle className="w-4 h-4" />
+                            </Button>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-center justify-between p-4 border rounded-lg bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900">
+                          <div className="flex items-center gap-3">
+                            <Mail className="w-5 h-5 text-blue-600" />
+                            <div>
+                              <p className="font-medium">Email</p>
+                              <p className="text-sm text-muted-foreground">shaqfarrel@gmail.com</p>
+                            </div>
+                          </div>
+                          <div className="flex gap-2">
+                            <Button variant="outline" size="sm" onClick={() => copyToClipboard('shaqfarrel@gmail.com', 'Email')}>
+                              <Copy className="w-4 h-4" />
+                            </Button>
+                            <Button size="sm" onClick={() => window.open('mailto:shaqfarrel@gmail.com', '_blank')} className="bg-blue-600 hover:bg-blue-700">
+                              <Mail className="w-4 h-4" />
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="text-center text-sm text-muted-foreground">
+                        I typically respond within 24 hours 🚀
+                      </div>
+                    </div>
+                  </DialogContent>
+                </Dialog>
+                
+                <Button variant="outline" size="lg" onClick={() => window.open('/lovable-uploads/2d3ffa1f-945e-4568-a240-9f1d18a49505.png', '_blank')}>
                   <Download className="w-5 h-5 mr-2" />
                   Download CV
                 </Button>
@@ -166,7 +263,7 @@ const Index = () => {
                 </div>
                 <div className="absolute -bottom-4 -right-4 bg-primary text-primary-foreground p-4 rounded-2xl shadow-lg">
                   <div className="text-center">
-                    <div className="text-2xl font-bold">3+</div>
+                    <div className="text-2xl font-bold">2</div>
                     <div className="text-sm">Years Experience</div>
                   </div>
                 </div>
@@ -178,7 +275,7 @@ const Index = () => {
         {/* Stats Bar */}
         <div className="bg-primary text-primary-foreground py-6 mt-16">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-3 gap-8">
               {stats.map((stat, index) => {
                 const Icon = stat.icon;
                 return (
@@ -290,7 +387,12 @@ const Index = () => {
                         <div className="flex-1">
                           <div className="flex items-center gap-4 mb-2">
                             <Badge variant="outline">{exp.year}</Badge>
-                            <Badge variant="secondary">{exp.type}</Badge>
+                            <Badge variant="secondary" className={
+                              exp.type === 'Internship' ? 'bg-primary text-primary-foreground' :
+                              exp.type === 'Achievement' ? 'bg-primary text-primary-foreground' :
+                              exp.type === 'Leadership' ? 'bg-primary text-primary-foreground' :
+                              ''
+                            }>{exp.type}</Badge>
                           </div>
                           <h3 className="text-xl font-semibold mb-1">{exp.title}</h3>
                           <p className="text-muted-foreground">{exp.company}</p>
@@ -349,12 +451,6 @@ const Index = () => {
               ))}
             </div>
 
-            <div className="text-center mt-12">
-              <Button variant="outline" size="lg">
-                <ExternalLink className="w-5 h-5 mr-2" />
-                See All My Work
-              </Button>
-            </div>
           </div>
         </div>
       </section>
@@ -402,9 +498,9 @@ const Index = () => {
                 <p className="text-muted-foreground mb-4">
                   Drop me a line for project discussions or collaborations
                 </p>
-                <Button className="w-full">
+                <Button className="w-full" onClick={() => window.open('mailto:shaqfarrel@gmail.com', '_blank')}>
                   <Mail className="w-4 h-4 mr-2" />
-                  erlangga.farrel@example.com
+                  shaqfarrel@gmail.com
                 </Button>
               </Card>
               
@@ -414,26 +510,152 @@ const Index = () => {
                 <p className="text-muted-foreground mb-4">
                   Quick chat for urgent matters or questions
                 </p>
-                <Button variant="outline" className="w-full">
-                  <Phone className="w-4 h-4 mr-2" />
-                  Chat on WhatsApp
-                </Button>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button variant="outline" className="w-full">
+                      <Phone className="w-4 h-4 mr-2" />
+                      Chat on WhatsApp
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-md">
+                    <DialogHeader>
+                      <DialogTitle className="flex items-center gap-2">
+                        <Phone className="w-5 h-5 text-primary" />
+                        WhatsApp Contact
+                      </DialogTitle>
+                    </DialogHeader>
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between p-4 border rounded-lg bg-gradient-to-r from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
+                        <div className="flex items-center gap-3">
+                          <Phone className="w-5 h-5 text-green-600" />
+                          <div>
+                            <p className="font-medium">Phone Number</p>
+                            <p className="text-sm text-muted-foreground">08113889997</p>
+                          </div>
+                        </div>
+                        <div className="flex gap-2">
+                          <Button variant="outline" size="sm" onClick={() => copyToClipboard('08113889997', 'Phone number')}>
+                            <Copy className="w-4 h-4" />
+                          </Button>
+                          <Button size="sm" onClick={() => window.open('https://wa.me/08113889997', '_blank')} className="bg-green-600 hover:bg-green-700">
+                            <MessageCircle className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  </DialogContent>
+                </Dialog>
               </Card>
             </div>
 
             <div className="flex justify-center space-x-6">
-              <Button variant="outline" size="lg" className="bg-background text-foreground hover:bg-muted">
-                <Linkedin className="w-5 h-5 mr-2" />
-                LinkedIn
-              </Button>
-              <Button variant="outline" size="lg" className="bg-background text-foreground hover:bg-muted">
-                <Github className="w-5 h-5 mr-2" />
-                GitHub
-              </Button>
-              <Button variant="outline" size="lg" className="bg-background text-foreground hover:bg-muted">
-                <Instagram className="w-5 h-5 mr-2" />
-                Instagram
-              </Button>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button variant="outline" size="lg" className="bg-background text-foreground hover:bg-muted">
+                    <Linkedin className="w-5 h-5 mr-2" />
+                    LinkedIn
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-md">
+                  <DialogHeader>
+                    <DialogTitle className="flex items-center gap-2">
+                      <Linkedin className="w-5 h-5 text-primary" />
+                      LinkedIn Profile
+                    </DialogTitle>
+                  </DialogHeader>
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between p-4 border rounded-lg">
+                      <div className="flex items-center gap-3">
+                        <Linkedin className="w-5 h-5 text-blue-600" />
+                        <div>
+                          <p className="font-medium">LinkedIn</p>
+                          <p className="text-sm text-muted-foreground">linkedin.com/in/farrelshaq-mar2303/</p>
+                        </div>
+                      </div>
+                      <div className="flex gap-2">
+                        <Button variant="outline" size="sm" onClick={() => copyToClipboard('https://www.linkedin.com/in/farrelshaq-mar2303/', 'LinkedIn URL')}>
+                          <Copy className="w-4 h-4" />
+                        </Button>
+                        <Button size="sm" onClick={() => window.open('https://www.linkedin.com/in/farrelshaq-mar2303/', '_blank')}>
+                          <ExternalLink className="w-4 h-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </DialogContent>
+              </Dialog>
+              
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button variant="outline" size="lg" className="bg-background text-foreground hover:bg-muted">
+                    <Github className="w-5 h-5 mr-2" />
+                    GitHub
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-md">
+                  <DialogHeader>
+                    <DialogTitle className="flex items-center gap-2">
+                      <Github className="w-5 h-5 text-primary" />
+                      GitHub Profile
+                    </DialogTitle>
+                  </DialogHeader>
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between p-4 border rounded-lg">
+                      <div className="flex items-center gap-3">
+                        <Github className="w-5 h-5 text-gray-800 dark:text-gray-200" />
+                        <div>
+                          <p className="font-medium">GitHub</p>
+                          <p className="text-sm text-muted-foreground">github.com/farrelshaq</p>
+                        </div>
+                      </div>
+                      <div className="flex gap-2">
+                        <Button variant="outline" size="sm" onClick={() => copyToClipboard('https://github.com/farrelshaq', 'GitHub URL')}>
+                          <Copy className="w-4 h-4" />
+                        </Button>
+                        <Button size="sm" onClick={() => window.open('https://github.com/farrelshaq', '_blank')}>
+                          <ExternalLink className="w-4 h-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </DialogContent>
+              </Dialog>
+              
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button variant="outline" size="lg" className="bg-background text-foreground hover:bg-muted">
+                    <Instagram className="w-5 h-5 mr-2" />
+                    Instagram
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-md">
+                  <DialogHeader>
+                    <DialogTitle className="flex items-center gap-2">
+                      <Instagram className="w-5 h-5 text-primary" />
+                      Instagram Profile
+                    </DialogTitle>
+                  </DialogHeader>
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between p-4 border rounded-lg">
+                      <div className="flex items-center gap-3">
+                        <Instagram className="w-5 h-5 text-pink-600" />
+                        <div>
+                          <p className="font-medium">Instagram</p>
+                          <p className="text-sm text-muted-foreground">instagram.com/farrelshaq/</p>
+                        </div>
+                      </div>
+                      <div className="flex gap-2">
+                        <Button variant="outline" size="sm" onClick={() => copyToClipboard('https://www.instagram.com/farrelshaq/', 'Instagram URL')}>
+                          <Copy className="w-4 h-4" />
+                        </Button>
+                        <Button size="sm" onClick={() => window.open('https://www.instagram.com/farrelshaq/', '_blank')}>
+                          <ExternalLink className="w-4 h-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </DialogContent>
+              </Dialog>
             </div>
           </div>
         </div>
