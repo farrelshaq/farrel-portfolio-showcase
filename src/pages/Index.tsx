@@ -6,7 +6,6 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Mail, Phone, Download, ExternalLink, Github, Linkedin, Instagram, MapPin, Calendar, Award, Users, Code, Palette, ChevronDown, ChevronUp, Copy, MessageCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import "../types/hana-viewer";
 
 const Index = () => {
   const [expandedExperience, setExpandedExperience] = useState<string | null>(null);
