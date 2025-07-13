@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -6,10 +6,23 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Mail, Phone, Download, ExternalLink, Github, Linkedin, Instagram, MapPin, Calendar, Award, Users, Code, Palette, ChevronDown, ChevronUp, Copy, MessageCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import "../types/hana-viewer";
 
 const Index = () => {
   const [expandedExperience, setExpandedExperience] = useState<string | null>(null);
   const { toast } = useToast();
+
+  useEffect(() => {
+    // Load Spline script
+    const script = document.createElement('script');
+    script.type = 'module';
+    script.src = 'https://cdn.spline.design/@splinetool/hana-viewer@1.0.42/hana-viewer.js';
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
 
   const copyToClipboard = (text: string, label: string) => {
     navigator.clipboard.writeText(text);
@@ -25,7 +38,7 @@ const Index = () => {
       year: "2025",
       title: "Praktik Kerja Lapangan (PKL)",
       company: "SMK Telkom Malang",
-      location: "Malang, Indonesia",
+      location: "Sidoarjo, Indonesia",
       description: "Currently doing my PKL, gaining hands-on experience in software development and business processes.",
       type: "Internship"
     },
@@ -44,7 +57,7 @@ const Index = () => {
       title: "Event Committee Member",
       company: "SMK Telkom Malang",
       location: "Malang, Indonesia",
-      description: "Security and equipment division, responsible for organizing and communicating with teachers, sponsors, and peers.",
+      description: "Organization Paskibra - Security and equipment division, responsible for organizing and communicating with teachers, sponsors, and peers.",
       type: "Leadership"
     }
   ];
@@ -57,10 +70,10 @@ const Index = () => {
       type: "Web Development"
     },
     {
-      title: "Coffee Shop App Concept", 
+      title: "Coffee Shop App Idea", 
       description: "Early concept for a web/app to search, rate, and review coffee shops with a fun spin wheel feature",
       tech: ["UI/UX Design", "Concept"],
-      type: "App Design"
+      type: "Idea Business"
     }
   ];
 
@@ -154,28 +167,49 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="relative py-20 md:py-32">
-        <div className="container mx-auto px-4">
+      <section id="home" className="relative py-20 md:py-32 overflow-hidden">
+        {/* Spline 3D Background */}
+        <div className="absolute inset-0 z-0">
+          <hana-viewer 
+            url="https://prod.spline.design/6JcERGoYOdLE490c-ynl/scene.hanacode"
+            style={{ 
+              width: '100%', 
+              height: '100%', 
+              filter: 'hue-rotate(220deg) saturate(1.3) brightness(0.8)',
+            }}
+          />
+        </div>
+        
+        {/* Floating geometric elements */}
+        <div className="absolute inset-0 z-5">
+          <div className="absolute top-1/4 left-1/4 w-16 h-16 bg-primary/20 rounded-full animate-pulse"></div>
+          <div className="absolute top-3/4 right-1/4 w-12 h-12 bg-blue-500/30 rounded-lg animate-bounce delay-300"></div>
+          <div className="absolute top-1/2 left-1/3 w-8 h-8 bg-primary/40 rounded-full animate-ping delay-1000"></div>
+        </div>
+        
+        {/* Overlay for better text readability */}
+        <div className="absolute inset-0 bg-background/70 backdrop-blur-[1px] z-10"></div>
+        
+        <div className="container mx-auto px-4 relative z-20">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
             <div className="flex-1 text-center lg:text-left">
-              <div className="flex items-center justify-center lg:justify-start mb-4">
-                <Avatar className="w-16 h-16 mr-4">
-                  <AvatarImage src="/lovable-uploads/29d5b6a7-d92e-4a10-b69a-7ce5683e06c2.png" alt="Erlangga Farrel Shaquille" />
-                  <AvatarFallback>EF</AvatarFallback>
-                </Avatar>
-                <div>
-                  <p className="text-muted-foreground">Hi, I'm Erlangga 👋</p>
-                </div>
+              <div className="mb-8">
+                <p className="text-muted-foreground text-lg mb-4 animate-fade-in">Hi, I'm Erlangga 👋🏻</p>
               </div>
               
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-                Software Engineering Student
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">
+                <span className="relative inline-block">
+                  <span className="bg-gradient-to-r from-primary via-blue-500 to-primary bg-clip-text text-transparent animate-pulse">
+                    Software Engineering Student
+                  </span>
+                  <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-primary/80 via-blue-400 to-primary/80 rounded-full animate-scale-in"></span>
+                </span>
               </h1>
-              <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-muted-foreground">
+              <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-muted-foreground animate-fade-in">
                 Based in Malang, Indonesia
               </h2>
               
-              <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl">
+              <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl animate-fade-in">
                 I'm passionate about combining IT, creative work, and business. 
                 Currently doing my PKL at SMK Telkom Malang, aiming to study Business Digital at Telkom University.
               </p>
@@ -253,20 +287,24 @@ const Index = () => {
             </div>
 
             <div className="flex-1 flex justify-center lg:justify-end">
-              <div className="relative">
-                <div className="w-80 h-96 rounded-3xl overflow-hidden border-4 border-primary/20 shadow-2xl">
+              <div className="relative animate-float">
+                <div className="w-80 h-96 rounded-3xl overflow-hidden border-4 border-primary/30 shadow-2xl animate-pulse-glow">
                   <img 
                     src="/lovable-uploads/29d5b6a7-d92e-4a10-b69a-7ce5683e06c2.png" 
                     alt="Erlangga Farrel Shaquille"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
-                <div className="absolute -bottom-4 -right-4 bg-primary text-primary-foreground p-4 rounded-2xl shadow-lg">
+                <div className="absolute -bottom-4 -right-4 bg-gradient-to-br from-primary to-blue-600 text-primary-foreground p-4 rounded-2xl shadow-lg animate-bounce">
                   <div className="text-center">
                     <div className="text-2xl font-bold">2</div>
                     <div className="text-sm">Years Experience</div>
                   </div>
                 </div>
+                
+                {/* Additional floating elements */}
+                <div className="absolute -top-6 -left-6 w-12 h-12 bg-blue-400/20 rounded-full animate-ping"></div>
+                <div className="absolute -bottom-8 -left-8 w-8 h-8 bg-primary/30 rounded-lg rotate-45 animate-spin" style={{ animationDuration: '8s' }}></div>
               </div>
             </div>
           </div>
