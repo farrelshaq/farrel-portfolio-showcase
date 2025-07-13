@@ -11,17 +11,6 @@ const Index = () => {
   const [expandedExperience, setExpandedExperience] = useState<string | null>(null);
   const { toast } = useToast();
 
-  useEffect(() => {
-    // Load Spline script
-    const script = document.createElement('script');
-    script.type = 'module';
-    script.src = 'https://cdn.spline.design/@splinetool/hana-viewer@1.0.42/hana-viewer.js';
-    document.head.appendChild(script);
-
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, []);
 
   const copyToClipboard = (text: string, label: string) => {
     navigator.clipboard.writeText(text);
@@ -167,23 +156,23 @@ const Index = () => {
 
       {/* Hero Section */}
       <section id="home" className="relative py-20 md:py-32 overflow-hidden">
-        {/* Spline 3D Background */}
-        <div className="absolute inset-0 z-0">
-          <hana-viewer 
-            url="https://prod.spline.design/6JcERGoYOdLE490c-ynl/scene.hanacode"
-            style={{ 
-              width: '100%', 
-              height: '100%', 
-              filter: 'hue-rotate(220deg) saturate(1.3) brightness(0.8)',
-            }}
-          />
-        </div>
-        
-        {/* Floating geometric elements */}
-        <div className="absolute inset-0 z-5">
-          <div className="absolute top-1/4 left-1/4 w-16 h-16 bg-primary/20 rounded-full animate-pulse"></div>
-          <div className="absolute top-3/4 right-1/4 w-12 h-12 bg-blue-500/30 rounded-lg animate-bounce delay-300"></div>
-          <div className="absolute top-1/2 left-1/3 w-8 h-8 bg-primary/40 rounded-full animate-ping delay-1000"></div>
+        {/* Animated 3D Background */}
+        <div className="absolute inset-0 z-0 animate-background-shift bg-gradient-to-br from-primary/10 via-transparent to-primary/5">
+          {/* Floating geometric shapes */}
+          <div className="absolute top-20 left-10 w-16 h-16 bg-gradient-to-br from-primary/30 to-primary/10 rounded-xl animate-float-3d shadow-lg"></div>
+          <div className="absolute top-40 right-20 w-12 h-12 bg-gradient-to-br from-primary/20 to-primary/5 rotate-45 animate-float delay-1000 shadow-md"></div>
+          <div className="absolute bottom-32 left-20 w-20 h-20 bg-gradient-to-br from-primary/25 to-primary/8 rounded-full animate-pulse shadow-lg"></div>
+          <div className="absolute bottom-20 right-40 w-8 h-8 bg-gradient-to-br from-primary/35 to-primary/15 rounded-full animate-orbit"></div>
+          
+          {/* Grid pattern overlay */}
+          <div className="absolute inset-0 opacity-10" style={{
+            backgroundImage: `radial-gradient(circle at 1px 1px, #131D4F 1px, transparent 0)`,
+            backgroundSize: '40px 40px'
+          }}></div>
+          
+          {/* Gradient orbs */}
+          <div className="absolute top-1/3 left-1/4 w-32 h-32 bg-gradient-radial from-primary/20 to-transparent rounded-full blur-xl animate-pulse"></div>
+          <div className="absolute bottom-1/3 right-1/4 w-24 h-24 bg-gradient-radial from-primary/15 to-transparent rounded-full blur-lg animate-float-3d"></div>
         </div>
         
         {/* Overlay for better text readability */}
@@ -196,12 +185,12 @@ const Index = () => {
                 <p className="text-muted-foreground text-lg mb-4 animate-fade-in">Hi, I'm Erlangga 👋🏻</p>
               </div>
               
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">
+                <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">
                 <span className="relative inline-block">
-                  <span className="bg-gradient-to-r from-primary via-blue-500 to-primary bg-clip-text text-transparent animate-pulse">
+                  <span className="bg-gradient-to-r from-primary via-primary/70 to-primary bg-clip-text text-transparent animate-pulse">
                     Software Engineering Student
                   </span>
-                  <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-primary/80 via-blue-400 to-primary/80 rounded-full animate-scale-in"></span>
+                  <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-primary/80 via-primary/60 to-primary/80 rounded-full animate-scale-in"></span>
                 </span>
               </h1>
               <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-muted-foreground animate-fade-in">
@@ -470,7 +459,18 @@ const Index = () => {
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between mb-4">
                       <Badge variant="outline">{project.type}</Badge>
-                      <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                      {project.title === "Coffee Shop App Idea" ? (
+                        <Button 
+                          variant="ghost" 
+                          size="icon" 
+                          className="opacity-0 group-hover:opacity-100 transition-opacity"
+                          onClick={() => window.open('https://drive.google.com/drive/folders/1ayEt4z-qjM6aggXKgYqanXx4PfxCrrgH?usp=sharing', '_blank')}
+                        >
+                          <ExternalLink className="w-5 h-5" />
+                        </Button>
+                      ) : (
+                        <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                      )}
                     </div>
                     
                     <h3 className="text-xl font-semibold mb-3">{project.title}</h3>

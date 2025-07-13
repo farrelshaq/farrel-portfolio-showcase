@@ -14,8 +14,23 @@
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 5px hsl(var(--primary) / 0.5); }
-  50% { box-shadow: 0 0 20px hsl(var(--primary) / 0.8), 0 0 30px hsl(var(--primary) / 0.6); }
+  0%, 100% { box-shadow: 0 0 5px hsl(230 47% 23% / 0.5); }
+  50% { box-shadow: 0 0 20px hsl(230 47% 23% / 0.8), 0 0 30px hsl(230 47% 23% / 0.6); }
+}
+
+@keyframes float-3d {
+  0%, 100% { transform: translateY(0px) rotateY(0deg); }
+  50% { transform: translateY(-20px) rotateY(180deg); }
+}
+
+@keyframes orbit {
+  0% { transform: rotate(0deg) translateX(100px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
+}
+
+@keyframes background-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 .animate-float {
@@ -29,6 +44,19 @@
 
 .animate-pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-float-3d {
+  animation: float-3d 4s ease-in-out infinite;
+}
+
+.animate-orbit {
+  animation: orbit 8s linear infinite;
+}
+
+.animate-background-shift {
+  background-size: 200% 200%;
+  animation: background-shift 6s ease infinite;
 }
 
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
@@ -46,7 +74,7 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 217 91% 60%;
+    --primary: 230 47% 23%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -94,8 +122,8 @@ All colors MUST be HSL.
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 217 91% 70%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 230 47% 23%;
+    --primary-foreground: 210 40% 98%;
 
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
