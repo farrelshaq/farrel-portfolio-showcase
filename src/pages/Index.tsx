@@ -54,7 +54,7 @@ const Index = () => {
     {
       title: "School Profile Website",
       description: "Designed and built using Flutter, HTML, CSS, and JavaScript",
-      tech: ["Flutter", "HTML", "CSS", "JavaScript"],
+      tech: ["Dart", "CSS", "HTML"],
       type: "Web Development"
     },
     {
@@ -176,7 +176,7 @@ const Index = () => {
         </div>
         
         {/* Overlay for better text readability */}
-        <div className="absolute inset-0 bg-background/70 backdrop-blur-[1px] z-10"></div>
+        <div className="absolute inset-0 bg-background/50 z-10"></div>
         
         <div className="container mx-auto px-4 relative z-20">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
@@ -320,7 +320,7 @@ const Index = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-muted/30">
+      <section id="about" className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">About Me</h2>
@@ -372,31 +372,35 @@ const Index = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
 
-            {/* Skills */}
-            <div className="mb-16">
-              <h3 className="text-2xl font-semibold mb-8 text-center">Skills & Competencies</h3>
-              <div className="grid md:grid-cols-3 gap-8">
-                {skills.map((skillGroup, index) => (
-                  <Card key={index} className="p-6">
-                    <h4 className="font-semibold mb-4 text-center">{skillGroup.category}</h4>
-                    <div className="flex flex-wrap gap-2 justify-center">
-                      {skillGroup.items.map((skill, skillIndex) => (
-                        <Badge key={skillIndex} variant="secondary" className="text-xs">
-                          {skill}
-                        </Badge>
-                      ))}
-                    </div>
-                  </Card>
-                ))}
-              </div>
+      {/* Skills & Competition Section */}
+      <section className="py-20 bg-primary text-primary-foreground">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <h3 className="text-2xl font-semibold mb-8 text-center text-primary-foreground">Skills & Competencies</h3>
+            <div className="grid md:grid-cols-3 gap-8">
+              {skills.map((skillGroup, index) => (
+                <Card key={index} className="p-6 bg-background/10 border-primary-foreground/20">
+                  <h4 className="font-semibold mb-4 text-center text-primary-foreground">{skillGroup.category}</h4>
+                  <div className="flex flex-wrap gap-2 justify-center">
+                    {skillGroup.items.map((skill, skillIndex) => (
+                      <Badge key={skillIndex} variant="secondary" className="text-xs bg-background/20 text-primary-foreground border-primary-foreground/30">
+                        {skill}
+                      </Badge>
+                    ))}
+                  </div>
+                </Card>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
       {/* Experience Section */}
-      <section className="py-20">
+      <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">Experience</h2>
@@ -448,37 +452,46 @@ const Index = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 bg-muted/30">
+      <section id="projects" className="py-20 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">Featured Works</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-primary-foreground">Featured Works</h2>
             
             <div className="grid md:grid-cols-2 gap-8">
               {projects.map((project, index) => (
-                <Card key={index} className="group hover:shadow-lg transition-all duration-300">
+                <Card key={index} className="group hover:shadow-lg transition-all duration-300 bg-background/10 border-primary-foreground/20">
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between mb-4">
-                      <Badge variant="outline">{project.type}</Badge>
+                      <Badge variant="outline" className="border-primary-foreground/30 text-primary-foreground">{project.type}</Badge>
                       {project.title === "Coffee Shop App Idea" ? (
                         <Button 
                           variant="ghost" 
                           size="icon" 
-                          className="opacity-0 group-hover:opacity-100 transition-opacity"
+                          className="opacity-0 group-hover:opacity-100 transition-opacity text-primary-foreground hover:bg-background/20"
                           onClick={() => window.open('https://drive.google.com/drive/folders/1ayEt4z-qjM6aggXKgYqanXx4PfxCrrgH?usp=sharing', '_blank')}
                         >
                           <ExternalLink className="w-5 h-5" />
                         </Button>
+                      ) : project.title === "School Profile Website" ? (
+                        <Button 
+                          variant="ghost" 
+                          size="icon" 
+                          className="opacity-0 group-hover:opacity-100 transition-opacity text-primary-foreground hover:bg-background/20"
+                          onClick={() => window.open('https://github.com/farrelshaq/Tugas_Akhir', '_blank')}
+                        >
+                          <ExternalLink className="w-5 h-5" />
+                        </Button>
                       ) : (
-                        <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                        <ExternalLink className="w-5 h-5 text-primary-foreground/60 group-hover:text-primary-foreground transition-colors" />
                       )}
                     </div>
                     
-                    <h3 className="text-xl font-semibold mb-3">{project.title}</h3>
-                    <p className="text-muted-foreground mb-4">{project.description}</p>
+                    <h3 className="text-xl font-semibold mb-3 text-primary-foreground">{project.title}</h3>
+                    <p className="text-primary-foreground/80 mb-4">{project.description}</p>
                     
                     <div className="flex flex-wrap gap-2">
                       {project.tech.map((tech, techIndex) => (
-                        <Badge key={techIndex} variant="secondary" className="text-xs">
+                        <Badge key={techIndex} variant="secondary" className="text-xs bg-background/20 text-primary-foreground border-primary-foreground/30">
                           {tech}
                         </Badge>
                       ))}
@@ -493,27 +506,77 @@ const Index = () => {
       </section>
 
       {/* Achievements */}
-      <section className="py-20">
+      <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-16">Certificates & Achievements</h2>
             
             <div className="grid md:grid-cols-2 gap-8">
-              <Card className="p-8">
-                <Award className="w-12 h-12 text-primary mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-2">Business Competition Semifinalist</h3>
-                <p className="text-muted-foreground">
-                  Participated in a business competition and reached the semifinals
-                </p>
-              </Card>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Card className="p-8 cursor-pointer hover:shadow-lg transition-all duration-300 group">
+                    <Award className="w-12 h-12 text-primary mx-auto mb-4" />
+                    <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">Business Competition Semifinalist</h3>
+                    <p className="text-muted-foreground">
+                      Participated in a business competition and reached the semifinals
+                    </p>
+                    <div className="mt-4 text-center">
+                      <Badge variant="outline" className="group-hover:border-primary">Click to view certificate</Badge>
+                    </div>
+                  </Card>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-2xl">
+                  <DialogHeader>
+                    <DialogTitle className="flex items-center gap-2">
+                      <Award className="w-5 h-5 text-primary" />
+                      Business Competition Certificate
+                    </DialogTitle>
+                  </DialogHeader>
+                  <div className="space-y-4">
+                    <img 
+                      src="/lovable-uploads/20075674-4b1d-416b-b7e7-0ff64c80f07b.png" 
+                      alt="Business Competition Certificate"
+                      className="w-full h-auto rounded-lg border shadow-lg"
+                    />
+                    <div className="text-center text-sm text-muted-foreground">
+                      Business Competition Semifinalist Certificate
+                    </div>
+                  </div>
+                </DialogContent>
+              </Dialog>
               
-              <Card className="p-8">
-                <Award className="w-12 h-12 text-primary mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-2">1st Place Potential</h3>
-                <p className="text-muted-foreground">
-                  Won 1st Place Potential at LPBB Singhasari
-                </p>
-              </Card>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Card className="p-8 cursor-pointer hover:shadow-lg transition-all duration-300 group">
+                    <Award className="w-12 h-12 text-primary mx-auto mb-4" />
+                    <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">1st Place Potential</h3>
+                    <p className="text-muted-foreground">
+                      Won 1st Place Potential at LPBB Singhasari
+                    </p>
+                    <div className="mt-4 text-center">
+                      <Badge variant="outline" className="group-hover:border-primary">Click to view certificate</Badge>
+                    </div>
+                  </Card>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-2xl">
+                  <DialogHeader>
+                    <DialogTitle className="flex items-center gap-2">
+                      <Award className="w-5 h-5 text-primary" />
+                      1st Place Potential Certificate
+                    </DialogTitle>
+                  </DialogHeader>
+                  <div className="space-y-4">
+                    <img 
+                      src="/lovable-uploads/ed444e81-3cc1-4809-8e16-7921b7ed19e3.png" 
+                      alt="1st Place Potential Certificate"
+                      className="w-full h-auto rounded-lg border shadow-lg"
+                    />
+                    <div className="text-center text-sm text-muted-foreground">
+                      1st Place Potential - LPBB Singhasari Certificate
+                    </div>
+                  </div>
+                </DialogContent>
+              </Dialog>
             </div>
           </div>
         </div>
