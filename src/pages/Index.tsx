@@ -157,22 +157,22 @@ const Index = () => {
       {/* Hero Section */}
       <section id="home" className="relative py-20 md:py-32 overflow-hidden">
         {/* Animated 3D Background */}
-        <div className="absolute inset-0 z-0 animate-background-shift bg-gradient-to-br from-primary/10 via-transparent to-primary/5">
+        <div className="absolute inset-0 z-0 animate-background-shift bg-gradient-to-br from-primary/15 via-transparent to-primary/10">
           {/* Floating geometric shapes */}
-          <div className="absolute top-20 left-10 w-16 h-16 bg-gradient-to-br from-primary/30 to-primary/10 rounded-xl animate-float-3d shadow-lg"></div>
-          <div className="absolute top-40 right-20 w-12 h-12 bg-gradient-to-br from-primary/20 to-primary/5 rotate-45 animate-float delay-1000 shadow-md"></div>
-          <div className="absolute bottom-32 left-20 w-20 h-20 bg-gradient-to-br from-primary/25 to-primary/8 rounded-full animate-pulse shadow-lg"></div>
-          <div className="absolute bottom-20 right-40 w-8 h-8 bg-gradient-to-br from-primary/35 to-primary/15 rounded-full animate-orbit"></div>
+          <div className="absolute top-20 left-10 w-20 h-20 bg-gradient-to-br from-primary/40 to-primary/20 rounded-xl animate-float-3d shadow-xl"></div>
+          <div className="absolute top-40 right-20 w-16 h-16 bg-gradient-to-br from-primary/30 to-primary/15 rotate-45 animate-float delay-1000 shadow-lg"></div>
+          <div className="absolute bottom-32 left-20 w-24 h-24 bg-gradient-to-br from-primary/35 to-primary/18 rounded-full animate-pulse shadow-xl"></div>
+          <div className="absolute bottom-20 right-40 w-12 h-12 bg-gradient-to-br from-primary/45 to-primary/25 rounded-full animate-orbit"></div>
           
           {/* Grid pattern overlay */}
-          <div className="absolute inset-0 opacity-10" style={{
+          <div className="absolute inset-0 opacity-15" style={{
             backgroundImage: `radial-gradient(circle at 1px 1px, #131D4F 1px, transparent 0)`,
             backgroundSize: '40px 40px'
           }}></div>
           
           {/* Gradient orbs */}
-          <div className="absolute top-1/3 left-1/4 w-32 h-32 bg-gradient-radial from-primary/20 to-transparent rounded-full blur-xl animate-pulse"></div>
-          <div className="absolute bottom-1/3 right-1/4 w-24 h-24 bg-gradient-radial from-primary/15 to-transparent rounded-full blur-lg animate-float-3d"></div>
+          <div className="absolute top-1/3 left-1/4 w-40 h-40 bg-gradient-radial from-primary/30 to-transparent rounded-full animate-pulse"></div>
+          <div className="absolute bottom-1/3 right-1/4 w-32 h-32 bg-gradient-radial from-primary/25 to-transparent rounded-full animate-float-3d"></div>
         </div>
         
         {/* Overlay for better text readability */}
@@ -276,14 +276,14 @@ const Index = () => {
 
             <div className="flex-1 flex justify-center lg:justify-end">
               <div className="relative animate-float">
-                <div className="w-80 h-96 rounded-3xl overflow-hidden border-4 border-primary/30 shadow-2xl animate-pulse-glow">
+                <div className="w-80 h-96 rounded-3xl overflow-hidden border-4 border-primary/40 shadow-2xl animate-pulse-glow" style={{ backgroundColor: '#131D4F' }}>
                   <img 
                     src="/lovable-uploads/29d5b6a7-d92e-4a10-b69a-7ce5683e06c2.png" 
                     alt="Erlangga Farrel Shaquille"
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700 mix-blend-overlay"
                   />
                 </div>
-                <div className="absolute -bottom-4 -right-4 bg-gradient-to-br from-primary to-blue-600 text-primary-foreground p-4 rounded-2xl shadow-lg animate-bounce">
+                <div className="absolute -bottom-4 -right-4 text-white p-4 rounded-2xl shadow-lg animate-bounce" style={{ backgroundColor: '#131D4F' }}>
                   <div className="text-center">
                     <div className="text-2xl font-bold">2</div>
                     <div className="text-sm">Years Experience</div>
@@ -765,8 +765,7 @@ const Index = () => {
       <footer className="py-8 border-t">
         <div className="container mx-auto px-4">
           <div className="text-center text-muted-foreground">
-            <p>&copy; 2024 Erlangga Farrel Shaquille. All rights reserved.</p>
-            <p className="mt-2 text-sm">Made with ❤️ and dedication</p>
+            <p>&copy; 2025 Erlangga Farrel Shaquille. All rights reserved.</p>
           </div>
         </div>
       </footer>
