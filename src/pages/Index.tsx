@@ -159,10 +159,15 @@ const Index = () => {
         {/* Animated 3D Background */}
         <div className="absolute inset-0 z-0 animate-background-shift bg-gradient-to-br from-primary/15 via-transparent to-primary/10">
           {/* Floating geometric shapes */}
-          <div className="absolute top-20 left-10 w-20 h-20 bg-gradient-to-br from-primary/40 to-primary/20 rounded-xl animate-float-3d shadow-xl"></div>
-          <div className="absolute top-40 right-20 w-16 h-16 bg-gradient-to-br from-primary/30 to-primary/15 rotate-45 animate-float delay-1000 shadow-lg"></div>
-          <div className="absolute bottom-32 left-20 w-24 h-24 bg-gradient-to-br from-primary/35 to-primary/18 rounded-full animate-pulse shadow-xl"></div>
-          <div className="absolute bottom-20 right-40 w-12 h-12 bg-gradient-to-br from-primary/45 to-primary/25 rounded-full animate-orbit"></div>
+          <div className="absolute top-20 left-10 w-28 h-28 bg-gradient-to-br from-primary/60 to-primary/40 rounded-xl animate-float-3d shadow-2xl"></div>
+          <div className="absolute top-40 right-20 w-20 h-20 bg-gradient-to-br from-primary/50 to-primary/30 rotate-45 animate-float delay-1000 shadow-xl"></div>
+          <div className="absolute bottom-32 left-20 w-32 h-32 bg-gradient-to-br from-primary/55 to-primary/35 rounded-full animate-pulse shadow-2xl"></div>
+          <div className="absolute bottom-20 right-40 w-16 h-16 bg-gradient-to-br from-primary/65 to-primary/45 rounded-full animate-orbit"></div>
+          
+          {/* Additional attractive elements */}
+          <div className="absolute top-1/2 left-1/2 w-6 h-6 bg-primary/70 rounded-full animate-bounce delay-300"></div>
+          <div className="absolute top-1/4 right-1/3 w-8 h-8 bg-primary/60 rotate-12 animate-spin rounded-lg" style={{ animationDuration: '10s' }}></div>
+          <div className="absolute bottom-1/4 left-1/3 w-10 h-10 bg-primary/50 rounded-full animate-ping delay-500"></div>
           
           {/* Grid pattern overlay */}
           <div className="absolute inset-0 opacity-15" style={{
@@ -182,7 +187,7 @@ const Index = () => {
           <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
             <div className="flex-1 text-center lg:text-left">
               <div className="mb-8">
-                <p className="text-muted-foreground text-lg mb-4 animate-fade-in">Hi, I'm Erlangga 👋🏻</p>
+                <p className="text-muted-foreground text-lg mb-4 animate-fade-in">Hi, I'm Erlangga Farrel Shaquille 👋🏻</p>
               </div>
               
                 <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">
@@ -199,7 +204,7 @@ const Index = () => {
               
               <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl animate-fade-in">
                 I'm passionate about combining IT, creative work, and business. 
-                Currently doing my PKL at SMK Telkom Malang, aiming to study Business Digital at Telkom University.
+                Currently doing my PKL at SMK Telkom Malang, aiming to study Digital Business at Telkom University dan saya akan mencari golden tiket untuk masuk ke universitas negeri.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -223,40 +228,38 @@ const Index = () => {
                       </div>
                       
                       <div className="space-y-4">
-                        <div className="flex items-center justify-between p-4 border rounded-lg bg-gradient-to-r from-green-50 to-green-100 dark:from-green-950 dark:to-green-900">
-                          <div className="flex items-center gap-3">
-                            <Phone className="w-5 h-5 text-green-600" />
+                          <div className="p-6 rounded-lg shadow-lg" style={{ backgroundColor: '#131D4F' }}>
+                          <div className="flex items-center gap-3 mb-4">
+                            <Phone className="w-6 h-6 text-white" />
                             <div>
-                              <p className="font-medium">WhatsApp</p>
-                              <p className="text-sm text-muted-foreground">08113889997</p>
+                              <p className="font-medium text-white text-lg">WhatsApp</p>
+                              <p className="text-white/80">Quick chat for urgent matters or questions</p>
                             </div>
                           </div>
-                          <div className="flex gap-2">
-                            <Button variant="outline" size="sm" onClick={() => copyToClipboard('08113889997', 'Phone number')}>
-                              <Copy className="w-4 h-4" />
-                            </Button>
-                            <Button size="sm" onClick={() => window.open('https://wa.me/08113889997', '_blank')} className="bg-green-600 hover:bg-green-700">
-                              <MessageCircle className="w-4 h-4" />
-                            </Button>
-                          </div>
+                          <Button 
+                            onClick={() => window.open('https://wa.me/08113889997', '_blank')} 
+                            className="w-full bg-white text-[#131D4F] hover:bg-gray-100 font-medium"
+                          >
+                            <MessageCircle className="w-4 h-4 mr-2" />
+                            Chat on WhatsApp
+                          </Button>
                         </div>
                         
-                        <div className="flex items-center justify-between p-4 border rounded-lg bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900">
-                          <div className="flex items-center gap-3">
-                            <Mail className="w-5 h-5 text-blue-600" />
+                        <div className="p-6 rounded-lg shadow-lg" style={{ backgroundColor: '#131D4F' }}>
+                          <div className="flex items-center gap-3 mb-4">
+                            <Mail className="w-6 h-6 text-white" />
                             <div>
-                              <p className="font-medium">Email</p>
-                              <p className="text-sm text-muted-foreground">shaqfarrel@gmail.com</p>
+                              <p className="font-medium text-white text-lg">Email Me</p>
+                              <p className="text-white/80">Drop me a line for project discussions or collaborations</p>
                             </div>
                           </div>
-                          <div className="flex gap-2">
-                            <Button variant="outline" size="sm" onClick={() => copyToClipboard('shaqfarrel@gmail.com', 'Email')}>
-                              <Copy className="w-4 h-4" />
-                            </Button>
-                            <Button size="sm" onClick={() => window.open('mailto:shaqfarrel@gmail.com', '_blank')} className="bg-blue-600 hover:bg-blue-700">
-                              <Mail className="w-4 h-4" />
-                            </Button>
-                          </div>
+                          <Button 
+                            onClick={() => window.open('mailto:shaqfarrel@gmail.com', '_blank')} 
+                            className="w-full bg-white text-[#131D4F] hover:bg-gray-100 font-medium"
+                          >
+                            <Mail className="w-4 h-4 mr-2" />
+                            shaqfarrel@gmail.com
+                          </Button>
                         </div>
                       </div>
                       
@@ -276,23 +279,49 @@ const Index = () => {
 
             <div className="flex-1 flex justify-center lg:justify-end">
               <div className="relative animate-float">
-                <div className="w-80 h-96 rounded-3xl overflow-hidden border-4 border-primary/40 shadow-2xl animate-pulse-glow" style={{ backgroundColor: '#131D4F' }}>
+                <div className="w-80 h-96 rounded-3xl overflow-hidden border-4 border-primary/30 shadow-2xl animate-pulse-glow">
                   <img 
                     src="/lovable-uploads/29d5b6a7-d92e-4a10-b69a-7ce5683e06c2.png" 
                     alt="Erlangga Farrel Shaquille"
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700 mix-blend-overlay"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
-                <div className="absolute -bottom-4 -right-4 text-white p-4 rounded-2xl shadow-lg animate-bounce" style={{ backgroundColor: '#131D4F' }}>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold">2</div>
-                    <div className="text-sm">Years Experience</div>
+                
+                {/* Stats Cards */}
+                <div className="absolute -top-6 -left-6 p-4 rounded-2xl shadow-xl animate-float delay-500" style={{ backgroundColor: '#131D4F' }}>
+                  <div className="text-center text-white">
+                    <div className="text-2xl font-bold flex items-center gap-2">
+                      <Code className="w-5 h-5" />
+                      2
+                    </div>
+                    <div className="text-sm">Years in Tech</div>
+                  </div>
+                </div>
+                
+                <div className="absolute top-20 -right-8 p-4 rounded-2xl shadow-xl animate-bounce" style={{ backgroundColor: '#131D4F' }}>
+                  <div className="text-center text-white">
+                    <div className="text-2xl font-bold flex items-center gap-2">
+                      <ExternalLink className="w-5 h-5" />
+                      1
+                    </div>
+                    <div className="text-sm">Project Done</div>
+                  </div>
+                </div>
+                
+                <div className="absolute -bottom-6 -left-4 p-4 rounded-2xl shadow-xl animate-pulse" style={{ backgroundColor: '#131D4F' }}>
+                  <div className="text-center text-white">
+                    <div className="text-2xl font-bold flex items-center gap-2">
+                      <Award className="w-5 h-5" />
+                      2+
+                    </div>
+                    <div className="text-sm">Competitions</div>
                   </div>
                 </div>
                 
                 {/* Additional floating elements */}
-                <div className="absolute -top-6 -left-6 w-12 h-12 bg-blue-400/20 rounded-full animate-ping"></div>
-                <div className="absolute -bottom-8 -left-8 w-8 h-8 bg-primary/30 rounded-lg rotate-45 animate-spin" style={{ animationDuration: '8s' }}></div>
+                <div className="absolute -top-2 -right-2 w-6 h-6 bg-primary/60 rounded-full animate-ping"></div>
+                <div className="absolute top-1/3 -left-8 w-4 h-4 bg-primary/50 rounded-lg rotate-45 animate-spin" style={{ animationDuration: '6s' }}></div>
+                <div className="absolute bottom-1/4 -right-4 w-3 h-3 bg-primary/70 rounded-full animate-bounce delay-700"></div>
               </div>
             </div>
           </div>
@@ -765,7 +794,7 @@ const Index = () => {
       <footer className="py-8 border-t">
         <div className="container mx-auto px-4">
           <div className="text-center text-muted-foreground">
-            <p>&copy; 2025 Erlangga Farrel Shaquille. All rights reserved.</p>
+            <p>&copy; 2025 Erlangga Farrel Shaquille.</p>
           </div>
         </div>
       </footer>
