@@ -24,7 +24,7 @@ const Index = () => {
     {
       id: "pkl",
       year: "2025",
-      title: "Praktik Kerja Lapangan (PKL)",
+      title: "Internship",
       company: "SMK Telkom Malang",
       location: "Sidoarjo, Indonesia",
       description: "Currently doing my PKL, gaining hands-on experience in software development and business processes.",
@@ -55,13 +55,15 @@ const Index = () => {
       title: "School Profile Website",
       description: "Designed and built using Flutter, HTML, CSS, and JavaScript",
       tech: ["Dart", "CSS", "HTML"],
-      type: "Web Development"
+      type: "Web Development",
+      link: "https://github.com/farrelshaq/Tugas_Akhir"
     },
     {
-      title: "Coffee Shop App Idea", 
-      description: "Early concept for a web/app to search, rate, and review coffee shops with a fun spin wheel feature",
+      title: "Web Design", 
+      description: "Desain aplikasi tentang jual beli kamera yang digunakan oleh pengguna yang menjual kamera menggunakan lovable.dev",
       tech: ["UI/UX Design", "Concept"],
-      type: "Idea Business"
+      type: "Web Design",
+      link: "https://camera-lens-pos-hub.vercel.app/"
     }
   ];
 
@@ -203,8 +205,7 @@ const Index = () => {
               </h2>
               
               <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl animate-fade-in">
-                I'm passionate about combining IT, creative work, and business. 
-                Currently doing my PKL at SMK Telkom Malang, aiming to study Digital Business at Telkom University dan saya akan mencari golden tiket untuk masuk ke universitas negeri.
+                Currently doing an internship at SMK Telkom Malang, planning to continue my studies in Digital Business at Telkom University, while preparing a 'golden ticket' through achievements and experiences to enter a state university.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -359,7 +360,7 @@ const Index = () => {
                 <h3 className="text-2xl font-semibold mb-6">Who I Am</h3>
                 <div className="space-y-4 text-muted-foreground">
                   <p>
-                    Hello! I'm Erlangga Farrel Shaquille, a student at SMK Telkom Malang currently doing my Praktik Kerja Lapangan (PKL). 
+                    Hello! I'm Erlangga Farrel Shaquille, a student at SMK Telkom Malang currently doing my Internship. 
                     I'm the second child of three siblings and the only son, which makes me hold strongly to responsibility — being a good example for my family while always learning and improving myself.
                   </p>
                   <p>
@@ -501,12 +502,12 @@ const Index = () => {
                         >
                           <ExternalLink className="w-5 h-5" />
                         </Button>
-                      ) : project.title === "School Profile Website" ? (
+                       ) : project.link ? (
                         <Button 
                           variant="ghost" 
                           size="icon" 
                           className="opacity-0 group-hover:opacity-100 transition-opacity text-primary-foreground hover:bg-background/20"
-                          onClick={() => window.open('https://github.com/farrelshaq/Tugas_Akhir', '_blank')}
+                          onClick={() => window.open(project.link, '_blank')}
                         >
                           <ExternalLink className="w-5 h-5" />
                         </Button>
